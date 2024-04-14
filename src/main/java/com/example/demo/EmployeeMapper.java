@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -10,6 +11,7 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface EmployeeMapper {
@@ -32,4 +34,11 @@ public interface EmployeeMapper {
 	@Select("SELECT * FROM employee WHERE company_id = #{companyId}")
 	@ResultMap("EmployeeMap")	
 	List <Employee> getByCompanyId(@Param("companyId") int companyId);
+	
+	@Update("UPDATE employee SET company_id = #{employee.companyId}, employee_name = #{employee.name}, employee_address = #{employee.address} WHERE id = #{employee.id}")
+	/* @ResultMap("CompanyMap") */
+	int update(@Param("employee") Employee employee);
+	
+	@Delete("DELETE FROM employee WHERE id = #{id}")
+	int delete(@Param("id") int id);
 }

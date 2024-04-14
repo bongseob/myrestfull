@@ -30,9 +30,20 @@ public class CompanyService {
 		companyMapper.insert(company);
 		
 		// 연동이 필요한 추가적인 작업을 기술
-		if (true) {
-			throw new RuntimeException("기존시스템 처리에서 오류 발생!");
-		}
+		//if (true) {
+		//	throw new RuntimeException("기존시스템 처리에서 오류 발생!");
+		//}
+		return company;
+	}
+
+	@Transactional
+	public Company edit(Company company) {
+		companyMapper.update(company);
+		
+		// 연동이 필요한 추가적인 작업을 기술
+		//if (true) {
+		//	throw new RuntimeException("기존시스템 처리에서 오류 발생!");
+		//}
 		return company;
 	}
 }
